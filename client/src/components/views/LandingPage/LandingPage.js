@@ -12,6 +12,10 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0);
     const [Limit, setLimit] = useState(8);
     const [PostSize, setPostSize] = useState(0);
+    const [Filters, setFilters] = useState({
+        continents: [],
+        price: []
+    })
 
     useEffect(() => {
 
@@ -30,7 +34,12 @@ function LandingPage() {
             .then(response =>{
 
                 if(response.data.success){
-                    setProducts([...Products, ...response.data.products]);
+
+                    if(variables.loadMore){
+                        setProducts([...Products, ...response.data.products]);
+                    }else{
+                        setProducts(response.data.products);
+                    }
                     setPostSize(response.data.postSize);
                     console.log(response.data.products);
                 }else{
@@ -47,7 +56,8 @@ function LandingPage() {
         let skip = Skip + Limit;
         const variables = {
             skip: skip,
-            limit: Limit
+            limit: Limit,
+            loadMore: true
         }
 
         getProducts(variables);
@@ -70,8 +80,30 @@ function LandingPage() {
         )
     });
 
-    const handleFilters = (filters, catagory)=>{
+    const showFilteredResults = (filters)=>{
 
+        const variables = {
+            skip:0,
+            limit: Limit,
+            filters: filters
+        }
+        getProducts(variables);
+        setSkip(0);
+
+    }
+
+    const handleFilters = (filters, catagory)=>{
+        console.log(filters)
+        const newFilters = {...Filters};
+
+        newFilters[catagory] = filters
+
+        if(catagory === 'price'){
+
+        }
+
+        showFilteredResults(newFilters);
+        setFilters(newFilters);
     }
 
     return (
