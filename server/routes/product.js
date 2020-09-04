@@ -64,13 +64,19 @@ router.post('/getProducts', (req, res) =>{
         if(req.body.filters[key].length > 0){
 
             if(key === 'price'){
-
+                findArgs[key] = {
+                    //(gte)greater than (lte)less than
+                    $gte: req.body.filters[key][0],
+                    $lte: req.body.filters[key][1]
+                }
             }else{
                 findArgs[key] = req.body.filters[key];
             }
 
         }
     }
+
+    console.log(findArgs);
 
     Product.find(findArgs)
         .populate('writer')
