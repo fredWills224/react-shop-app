@@ -9,6 +9,10 @@ function ProductInfo(props) {
         setProduct(props.detail);
     }, [props.detail])
 
+    const addToCartHandler = () =>{
+        props.addToCart(props.detail._id)
+    }
+
     return (
         <div>
             
@@ -27,7 +31,7 @@ function ProductInfo(props) {
                     size='large'
                     shape='round'
                     type='danger'
-                    onClick
+                    onClick={addToCartHandler}
                 >
                     Add to Cart
                 </Button>
