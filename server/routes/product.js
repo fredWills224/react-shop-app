@@ -52,6 +52,8 @@ router.post('/uploadProduct', auth, (req, res) =>{
 
 router.post('/getProducts', (req, res) =>{
 
+
+
     let order = req.body.order ? req.body.order : 'desc';
     let sortBy = req.body.sortBy ? req.body.sortBy: '_id';
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
@@ -108,7 +110,32 @@ router.post('/getProducts', (req, res) =>{
         ;
     
     }
-  
+
+    
+
+});
+
+//?id=${productId}&type=single
+router.get('/products_by_id', (req, res) =>{
+    
+    let type = req.query.type;
+    let productsIds = req.query.id;
+
+    if(type === 'array'){
+
+    }
+
+    //we need to find the product information that belongs to product with this productId
+    Product.find({ '_id': { $in: productsIds } })
+        .populate('writer')
+        .exec((err, product) =>{
+
+            if(err) return req.status(400).send(err);
+            return res.status(200).send(product);
+
+        })
+    ;
+
 });
 
 module.exports = router;
