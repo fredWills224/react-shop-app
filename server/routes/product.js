@@ -116,21 +116,32 @@ router.post('/getProducts', (req, res) =>{
 });
 
 //?id=${productId}&type=single
+//id=21212121212, 231324314242324, 1415153225225352 type=array
 router.get('/products_by_id', (req, res) =>{
     
     let type = req.query.type;
     let productsIds = req.query.id;
 
+    console.log('req.query.id', req.query.id);
+
     if(type === 'array'){
+        
+        let ids = req.query.id.split(',');
+        productIds = [];
+        productIds = ids.map(item =>{
+            return item
+        });
 
     }
 
+    console.log('productIds', productIds)
+
     //we need to find the product information that belongs to product with this productId
-    Product.find({ '_id': { $in: productsIds } })
+    Product.find({ '_id': { $in: productIds } })
         .populate('writer')
         .exec((err, product) =>{
 
-            if(err) return req.status(400).send(err);
+            if(err) return res.status(400).send(err);
             return res.status(200).send(product);
 
         })
