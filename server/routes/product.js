@@ -120,7 +120,7 @@ router.post('/getProducts', (req, res) =>{
 router.get('/products_by_id', (req, res) =>{
     
     let type = req.query.type;
-    let productsIds = req.query.id;
+    let productIds = req.query.id;
 
     console.log('req.query.id', req.query.id);
 
