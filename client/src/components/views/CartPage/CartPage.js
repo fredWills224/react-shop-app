@@ -48,7 +48,7 @@ function CartPage(props) {
     const removeFromCart = (productId)=>{
 
         dispatch(removeCartItem(productId))
-            .then(()=>{
+            .then(() =>{
                 
                 axios.get('/api/users/userCartInfo')
                     .then(response =>{
@@ -57,18 +57,27 @@ function CartPage(props) {
                                 setShowTotal(false);
                             }else{
                                 calculateTotal(response.data.cartDetail);
+                                console.log(Total);
                             }
                         }else{
                             alert('failed to get cart info');
                         }
                     })
-                ;              
+                ;
+
+                // if(props.user.cartDetail.length <= 0){
+                //     setTotal(0);
+                //     setShowTotal(false);
+                // }else{
+                //     calculateTotal(props.user.cartDetail);
+                // }
 
             })
         ;
 
     }
 
+    
     return (
         <div>
 
