@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getCartItems, removeCartItem } from '../../../_actions/user_actions';
 import UserCardBlock from './Sections/UserCardBlock';
 import { Result, Empty } from 'antd';
-import axios from 'axios';
+//import axios from 'axios';
 
 function CartPage(props) {
 
@@ -21,10 +21,14 @@ function CartPage(props) {
                     cartItems.push(item.id);
                 });
                 dispatch(getCartItems(cartItems, props.user.userData.cart));
+            }else{
+                setTotal(0);
+                console.log(Total);
+                setShowTotal(false);
             }
         }
 
-    }, [props.user.userData])
+    }, [props.user.userData, Total, ShowTotal])
 
     useEffect(() => {
         
@@ -50,27 +54,27 @@ function CartPage(props) {
         dispatch(removeCartItem(productId))
             .then(() =>{
                 
-                axios.get('/api/users/userCartInfo')
-                    .then(response =>{
-                        if(response.data.success){
-                            if(response.data.cartDetail.length <= 0){
-                                setShowTotal(false);
-                            }else{
-                                calculateTotal(response.data.cartDetail);
-                                console.log(Total);
-                            }
-                        }else{
-                            alert('failed to get cart info');
-                        }
-                    })
-                ;
+                // axios.get('/api/users/userCartInfo')
+                //     .then(response =>{
+                //         if(response.data.success){
+                //             if(response.data.cartDetail.length <= 0){
+                //                 setShowTotal(false);
+                //             }else{
+                //                 calculateTotal(response.data.cartDetail);
+                //                 console.log(Total);
+                //             }
+                //         }else{
+                //             alert('failed to get cart info');
+                //         }
+                //     })
+                // ;
 
-                // if(props.user.cartDetail.length <= 0){
-                //     setTotal(0);
-                //     setShowTotal(false);
-                // }else{
-                //     calculateTotal(props.user.cartDetail);
-                // }
+                if(props.user.cartDetail.length <= 0){
+                    setTotal(0);
+                    setShowTotal(false);
+                }else{
+                    calculateTotal(props.user.cartDetail);
+                }
 
             })
         ;
