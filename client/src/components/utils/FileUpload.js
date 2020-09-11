@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
-import {Icon} from 'antd';
+import {PlusCircleOutlined} from '@ant-design/icons';
 import axios from 'axios';
 
 
@@ -60,7 +60,7 @@ function FileUpload(props) {
                         {...getRootProps()}
                     >
                         <input {...getInputProps()}/>
-                        <Icon type='plus' style={{ fontSize: '3rem' }}/>
+                        <PlusCircleOutlined style={{ fontSize: '3rem' }}/>
                     </div>
                 )}
 

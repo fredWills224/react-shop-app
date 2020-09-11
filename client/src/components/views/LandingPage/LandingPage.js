@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Icon, Col, Card, Row } from 'antd';
+import { Col, Card, Row } from 'antd';
+import { RocketOutlined } from '@ant-design/icons';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
@@ -154,7 +155,7 @@ function LandingPage() {
         <div style={{ width: '75%', margin: '3rem auto' }}>
             
             <div style={{ textAlign: 'center' }}>
-                <h2> Let's Travel Somewhere <Icon type='rocket'/> </h2>
+                <h2> Let's Travel Somewhere <RocketOutlined/> </h2>
             </div>
 
             {/* filter */}

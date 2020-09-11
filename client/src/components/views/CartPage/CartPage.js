@@ -4,6 +4,7 @@ import { getCartItems, removeCartItem } from '../../../_actions/user_actions';
 import UserCardBlock from './Sections/UserCardBlock';
 import { Result, Empty } from 'antd';
 //import axios from 'axios';
+import Paypal from '../../utils/Paypal';
 
 function CartPage(props) {
 
@@ -119,6 +120,9 @@ function CartPage(props) {
                 }
 
             </div>
+
+            {/* Paypal Button */}
+            <Paypal/>
 
         </div>
     )
