@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getCartItems, removeCartItem } from '../../../_actions/user_actions';
 import UserCardBlock from './Sections/UserCardBlock';
 import { Result, Empty } from 'antd';
-//import axios from 'axios';
+import axios from 'axios';
 import Paypal from '../../utils/Paypal';
 
 function CartPage(props) {
@@ -82,6 +82,32 @@ function CartPage(props) {
 
     }
 
+    const transactionSuccess = (data)=>{
+        
+        let variables = {
+            cartDetail: props.user.cartDetail,
+            paymentData: data
+        }
+
+        axios.post('/api/users/successBuy', variables)
+            .then(response =>{
+                if(response.data.success){
+
+                }else{
+                    alert('failed to buy');
+                }
+            })
+        ;
+
+    }
+
+    const transactionError = ()=>{
+        console.log('Paypal error');
+    }
+
+    const transactionCanceled = ()=>{
+
+    }
     
     return (
         <div>
@@ -122,7 +148,12 @@ function CartPage(props) {
             </div>
 
             {/* Paypal Button */}
-            <Paypal/>
+            <Paypal 
+                toPay={Total}
+                onSuccess={transactionSuccess}
+                transactionError={transactionError}
+                transactionCanceled={transactionCanceled}
+            />
 
         </div>
     )
