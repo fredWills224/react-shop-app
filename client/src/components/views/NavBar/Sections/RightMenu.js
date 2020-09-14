@@ -23,25 +23,31 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {
     return (
       <Menu mode={props.mode}>
+       
         <Menu.Item key="mail">
           <a href="/login">Signin</a>
         </Menu.Item>
         <Menu.Item key="app">
           <a href="/register">Signup</a>
         </Menu.Item>
+      
       </Menu>
     )
   } else {
     return (
       <Menu mode={props.mode}>
         
-        <Menu.Item key="upload">
+        <Menu.Item key='history'>
+          <a href='/history'>History</a>
+        </Menu.Item>
+
+        <Menu.Item key='upload'>
           <a href='/product/upload'>Upload</a>
         </Menu.Item>
 
         <Menu.Item key='cart'>
           
-          <Badge count={0}>
+          <Badge count={user.userData && user.userData.cart.length}>
             <a href='/user/cart' style={{ marginRight: -22, color: '#667777' }}>
               <ShoppingCartOutlined style={{ fontSize: 30, marginBottom: 4 }}/>
             </a>
