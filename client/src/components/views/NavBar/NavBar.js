@@ -18,16 +18,21 @@ function NavBar() {
 
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
+      
       <div className="menu__logo">
-        <a href="/">Logo</a>
+        <a href="/">Travel Time</a>
       </div>
+
       <div className="menu__container">
+        
         <div className="menu_left">
           <LeftMenu mode="horizontal" />
         </div>
+        
         <div className="menu_rigth">
           <RightMenu mode="horizontal" />
         </div>
+        
         <Button
           className="menu__mobile-button"
           type="primary"
@@ -35,6 +40,7 @@ function NavBar() {
         >
           <AlignRightOutlined />
         </Button>
+        
         <Drawer
           title="Basic Drawer"
           placement="right"
@@ -46,7 +52,9 @@ function NavBar() {
           <LeftMenu mode="inline" />
           <RightMenu mode="inline" />
         </Drawer>
+      
       </div>
+
     </nav>
   )
 }

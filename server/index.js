@@ -21,9 +21,10 @@ const connect = mongoose.connect(config.mongoURI,
     useCreateIndex: true, useFindAndModify: false
   })
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
+;
 
-app.use(cors())
+app.use(cors());
 
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
