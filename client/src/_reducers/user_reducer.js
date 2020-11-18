@@ -11,25 +11,41 @@ import {
  
 
 export default function(state={},action){
+    
     switch(action.type){
+        
         case REGISTER_USER:
             return {...state, register: action.payload }
+        ;
+
         case LOGIN_USER:
             return { ...state, loginSucces: action.payload }
+        ;
+
         case AUTH_USER:
             return {...state, userData: action.payload }
+        ;
+
         case LOGOUT_USER:
             return {...state }
+        ;
+        
         case ADD_TO_CART_USER:
-            return {...state, userData : {
-                ...state.userData,
+            return {
+                ...state, 
+                userData : {
+                    ...state.userData,
                     cart: action.payload
-            } 
-        }
+                } 
+            }
+        ;
+
         case GET_CART_ITEMS_USER:
             return {
                 ...state, cartDetail: action.payload
             }
+        ;
+        
         case REMOVE_CART_ITEM_USER:
             return{
                 ...state, cartDetail: action.payload.cartDetail,
@@ -38,6 +54,8 @@ export default function(state={},action){
                     cart: action.payload.cart
                 }
             }
+        ;
+
         case ON_SUCCESS_BUY_USER:
             return{
                 ...state,
@@ -47,8 +65,12 @@ export default function(state={},action){
                 },
                 cartDetail: action.payload.cartDetail
             }
+        ;
+
         default:
             return state
         ;
+    
     }
+    
 }

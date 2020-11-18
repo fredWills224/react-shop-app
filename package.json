@@ -8,12 +8,15 @@
     "npm": "6.9.0"
   },
   "scripts": {
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server/index.js",
+    "client": "npm start",
     "backend": "nodemon server/index.js",
-    "frontend": "npm run start --prefix client",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
-  "author": "John ahn",
+  "author": "Fred Wills",
   "license": "ISC",
   "dependencies": {
     "async": "^3.2.0",
