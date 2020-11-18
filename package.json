@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server/index.js",
     "client": "npm start",
+    "frontend": "npm run start --prefix client",
     "backend": "nodemon server/index.js",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
